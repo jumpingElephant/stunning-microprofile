@@ -1,0 +1,18 @@
+swarm:
+  mongodb:
+    mongos:
+      mongodbprofile:
+        jndi-name:  java:jboss/mongodb/test
+        id: mongodbprofile
+        module:  org.mongodb.driver.custom
+        hosts:
+          mongohost:
+            outbound-socket-binding-ref: mongohost
+
+  network:
+    socket-binding-groups:
+      standard-sockets:
+        outbound-socket-bindings:
+              mongohost:
+                remote-host: localhost
+                remote-port: 27017
