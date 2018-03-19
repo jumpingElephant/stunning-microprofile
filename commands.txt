@@ -1,0 +1,2 @@
+docker build --tag wildfly-microprofile wildfly-microprofile
+docker run --rm --publish 8080:8080 --detach --name hollow --link microprofile-mongo:mongo --network microprofile-network wildfly-microprofile
