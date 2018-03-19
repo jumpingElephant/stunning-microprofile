@@ -14,5 +14,5 @@ swarm:
       standard-sockets:
         outbound-socket-bindings:
               mongohost:
-                remote-host: localhost
+                remote-host: mongo
                 remote-port: 27017

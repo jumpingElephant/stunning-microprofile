@@ -1,0 +1,11 @@
+project:
+    stage: development
+
+swarm:
+  network:
+    socket-binding-groups:
+      standard-sockets:
+        outbound-socket-bindings:
+              mongohost:
+                remote-host: localhost
+                remote-port: 27017
