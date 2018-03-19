@@ -1,7 +1,6 @@
-package com.example.wildflymicroprofile.rest;
+package com.example.wildflymicroprofile.boundary;
 
 import com.example.wildflymicroprofile.persistence.Greeting;
-import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.mongodb.morphia.Datastore;
 

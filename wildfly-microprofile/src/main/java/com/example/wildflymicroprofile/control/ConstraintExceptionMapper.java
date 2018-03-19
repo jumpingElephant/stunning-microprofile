@@ -1,4 +1,4 @@
-package com.example.wildflymicroprofile.rest;
+package com.example.wildflymicroprofile.control;
 
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.core.MediaType;

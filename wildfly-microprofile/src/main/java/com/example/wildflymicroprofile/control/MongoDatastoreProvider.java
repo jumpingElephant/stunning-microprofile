@@ -1,4 +1,4 @@
-package com.example.wildflymicroprofile.persistence;
+package com.example.wildflymicroprofile.control;
 
 import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;

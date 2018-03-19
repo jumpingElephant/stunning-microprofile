@@ -1,5 +1,7 @@
-package com.example.wildflymicroprofile.persistence;
+package com.example.wildflymicroprofile.entity;
 
+import com.example.wildflymicroprofile.control.MongoDatastoreProvider;
+import com.example.wildflymicroprofile.persistence.Greeting;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

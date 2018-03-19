@@ -1,4 +1,4 @@
-package com.example.wildflymicroprofile.rest;
+package com.example.wildflymicroprofile.control;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
