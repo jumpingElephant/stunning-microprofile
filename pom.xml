@@ -8,6 +8,7 @@
 
     <modules>
         <module>wildfly-microprofile</module>
+        <module>wildfly-service-discovery</module>
     </modules>
 
     <dependencies>
