@@ -4,5 +4,6 @@ sudo docker run \
     --network microprofile-network \
     --publish 27017:27017 \
     --detach \
+    --rm \
     mongo
 
