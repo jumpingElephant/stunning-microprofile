@@ -3,13 +3,23 @@ package com.example.wildflyservicediscovery.rest;
 
 import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.agent.model.Service;
+import com.example.wildflyservicediscovery.control.ServiceName;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +28,13 @@ import java.util.stream.Collectors;
 @Path("/")
 public class ServiceConsumerEndpoint {
 
+    @Inject
+    @ServiceName("hello-world-service")
+    private Service helloWorldService;
+
+    @Context
+    private UriInfo uriInfo;
+
     @GET
     @Produces("application/json")
     @Path("/services")
@@ -25,12 +42,10 @@ public class ServiceConsumerEndpoint {
 
         ConsulClient consulClient = new ConsulClient("localhost");
         com.ecwid.consul.v1.Response<Map<String, Service>> agentServices = consulClient.getAgentServices();
-        System.out.println("agentServices = " + agentServices);
 
         List<Service> services = agentServices.getValue().values().stream()
                 .filter(service -> service.getService().equals(serviceName))
                 .collect(Collectors.toList());
-        System.out.println("services = " + services);
 
         return Response.ok(services).build();
     }
@@ -38,17 +53,16 @@ public class ServiceConsumerEndpoint {
     @GET
     @Produces("text/plain")
     @Path("/hello")
-    public Response forward() {
+    public Response forward(@QueryParam("name") String name) throws MalformedURLException, URISyntaxException {
 
-        ConsulClient consulClient = new ConsulClient("localhost");
-        String serviceUrl = consulClient.getAgentServices()
-                .getValue().values().stream()
-                .filter(service -> service.getService().equals("hello-world-service"))
-                .findAny()
-                .map(service -> service.getAddress() + ":" + service.getPort())
-                .orElseThrow(IllegalStateException::new);
+        String servicePath = "http://" + helloWorldService.getAddress() + ":" + helloWorldService.getPort();
 
-        return Response.ok("Please call " + serviceUrl).build();
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(servicePath).path("/hello").queryParam("name", name);
+        Response response = target.request(MediaType.TEXT_PLAIN).get();
+        String greeting = response.readEntity(String.class) + "\nRedirected by " + uriInfo.getPath();
+
+        return Response.ok(greeting).build();
     }
 
 }
