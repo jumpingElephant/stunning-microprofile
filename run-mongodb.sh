@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo docker run \
     --name microprofile-mongo \
     --mount source=microprofile-mongo-volume,target=/data/db \

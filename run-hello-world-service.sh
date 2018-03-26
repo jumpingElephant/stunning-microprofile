@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 docker run \
     --rm \
     --publish 8080:8080 \

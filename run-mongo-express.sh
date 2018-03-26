@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo docker run \
     --name mongo-express \
     --network microprofile-network \

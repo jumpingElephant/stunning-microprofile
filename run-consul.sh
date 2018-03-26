@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Is the definition of the hostname required?
 sudo docker run \
     --rm \
