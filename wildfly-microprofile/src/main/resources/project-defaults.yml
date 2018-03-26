@@ -16,3 +16,6 @@ swarm:
               mongohost:
                 remote-host: mongo
                 remote-port: 27017
+
+  consul:
+    url: "http://consul:8500"

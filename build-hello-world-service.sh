@@ -1,0 +1,1 @@
+docker build -t wildfly-hello-world-service wildfly-microprofile/.

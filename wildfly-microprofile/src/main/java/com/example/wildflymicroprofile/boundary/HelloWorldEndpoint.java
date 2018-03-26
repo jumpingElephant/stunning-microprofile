@@ -45,7 +45,7 @@ public class HelloWorldEndpoint {
 
         String message = new StringBuilder()
                 .append("Hi ").append(name).append(", \n")
-                .append(greeting.getText()).append(", \n")
+                .append(greeting.getText()).append("\n")
                 .append("I am on port ").append(serviceUri.getPort())
                 .toString();
         return Response.ok(message).build();

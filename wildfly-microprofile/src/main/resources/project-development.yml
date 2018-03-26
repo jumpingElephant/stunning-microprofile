@@ -9,3 +9,6 @@ swarm:
               mongohost:
                 remote-host: localhost
                 remote-port: 27017
+
+  consul:
+    url: "http://localhost:8500"
